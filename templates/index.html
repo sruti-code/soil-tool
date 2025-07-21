@@ -1,0 +1,19 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Specific Gravity Calculator</title>
+</head>
+<body>
+    <h1>Specific Gravity Calculator</h1>
+    <form method="POST">
+        Water Weight (g): <input type="number" name="water" step="0.01" required><br><br>
+        Dry Soil Weight (g): <input type="number" name="dry" step="0.01" required><br><br>
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if result is not none %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
