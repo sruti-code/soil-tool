@@ -1,36 +1,21 @@
 {% extends 'base.html' %}
-
 {% block title %}Specific Gravity Test{% endblock %}
-
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4">Specific Gravity Test</h2>
-    <form method="POST" action="/specific_gravity">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="w1" class="form-label">Weight of empty pycnometer (W₁) [g]</label>
-                <input type="number" step="0.01" class="form-control" name="w1" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="w2" class="form-label">Weight of pycnometer + dry soil (W₂) [g]</label>
-                <input type="number" step="0.01" class="form-control" name="w2" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="w3" class="form-label">Weight of pycnometer + soil + water (W₃) [g]</label>
-                <input type="number" step="0.01" class="form-control" name="w3" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="w4" class="form-label">Weight of pycnometer filled with water only (W₄) [g]</label>
-                <input type="number" step="0.01" class="form-control" name="w4" required>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Calculate Specific Gravity</button>
-    </form>
+<h2>Specific Gravity Test</h2>
+<form method="POST">
+  <label>Weight of dry soil (g):</label>
+  <input type="number" step="any" name="weight_dry" class="form-control" required>
 
-    {% if result %}
-    <div class="mt-4 alert alert-info">
-        <strong>Specific Gravity (G) = </strong> {{ result }}
-    </div>
-    {% endif %}
-</div>
+  <label>Weight of submerged soil (g):</label>
+  <input type="number" step="any" name="weight_submerged" class="form-control" required>
+
+  <label>Weight of container (g):</label>
+  <input type="number" step="any" name="weight_container" class="form-control" required>
+
+  <button type="submit" class="btn btn-primary mt-2">Calculate</button>
+</form>
+
+{% if result %}
+  <div class="alert alert-info mt-3">Specific Gravity: {{ result }}</div>
+{% endif %}
 {% endblock %}

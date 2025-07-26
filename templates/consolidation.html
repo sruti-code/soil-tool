@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Consolidation Test{% endblock %}
 {% block content %}
-<h2>Consolidation Test</h2>
-<form method="post">
-  <label>Initial Height (mm):</label>
-  <input type="number" step="any" name="initial_height" required class="form-control mb-2">
+<h2>Consolidation Coefficient (Cv) Calculator</h2>
+<form method="POST">
+  <label>Strain (cm):</label>
+  <input type="number" step="any" name="strain" required class="form-control mb-2">
 
-  <label>Final Height (mm):</label>
-  <input type="number" step="any" name="final_height" required class="form-control mb-2">
+  <label>Initial Time (min):</label>
+  <input type="number" step="any" name="time_initial" required class="form-control mb-2">
 
-  <button type="submit" class="btn btn-primary">Calculate</button>
+  <label>Final Time (min):</label>
+  <input type="number" step="any" name="time_final" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate Cv</button>
 </form>
-{% if result %}
-  <div class="alert alert-success mt-3">Compression Ratio: {{ result }}</div>
+
+{% if result is not none %}
+  <div class="alert alert-info mt-3">Calculated Cv: {{ result }} cm/min</div>
 {% endif %}
 {% endblock %}
 

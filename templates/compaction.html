@@ -1,17 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Compaction Test{% endblock %}
+
 {% block content %}
 <h2>Compaction Test</h2>
 <form method="post">
-  <label>Wet Density (g/cc):</label>
-  <input type="number" step="any" name="wet_density" required class="form-control mb-2">
+  <label>Weight of Mold with Wet Soil (kg):</label>
+  <input type="number" step="any" name="weight_mold_wet" required class="form-control mb-2">
 
-  <label>Water Content (%):</label>
-  <input type="number" step="any" name="water_content" required class="form-control mb-2">
+  <label>Weight of Empty Mold (kg):</label>
+  <input type="number" step="any" name="weight_mold" required class="form-control mb-2">
+
+  <label>Volume of Mold (cm³):</label>
+  <input type="number" step="any" name="volume_mold" required class="form-control mb-2">
+
+  <label>Moisture Content (%):</label>
+  <input type="number" step="any" name="moisture_content" required class="form-control mb-2">
 
   <button type="submit" class="btn btn-primary">Calculate</button>
 </form>
+
 {% if result %}
-  <div class="alert alert-success mt-3">Dry Density: {{ result }} g/cc</div>
+  {% if result is string %}
+    <div class="alert alert-danger mt-3">{{ result }}</div>
+  {% else %}
+    <div class="alert alert-success mt-3">
+      <p><strong>Wet Density:</strong> {{ result.wet_density }} g/cm³</p>
+      <p><strong>Dry Density:</strong> {{ result.dry_density }} g/cm³</p>
+    </div>
+  {% endif %}
 {% endif %}
 {% endblock %}

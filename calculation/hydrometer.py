@@ -1,10 +1,14 @@
 def calculate_particle_diameter(viscosity, specific_gravity, time, depth):
     try:
-        if any(x <= 0 for x in [viscosity, specific_gravity, time, depth]):
-            return "All inputs must be positive."
-        if specific_gravity <= 1:
-            return "Specific gravity must be greater than 1 (soil particles > water)."
-        d = ((18 * viscosity * depth) / ((specific_gravity - 1) * 980 * time)) ** 0.5
-        return round(d * 1000, 4)  # diameter in mm
+        # Input validation
+        if viscosity <= 0 or specific_gravity <= 1 or time <= 0 or depth <= 0:
+            return "Inputs must be positive, and specific gravity must be > 1."
+
+        # Stokes' law based calculation
+        g = 980  # acceleration due to gravity in cm/s²
+        diameter_cm = ((18 * viscosity * depth) / ((specific_gravity - 1) * g * time)) ** 0.5
+        diameter_mm = diameter_cm * 10  # convert from cm to mm
+
+        return round(diameter_mm, 4)
     except Exception as e:
         return f"Error: {e}"

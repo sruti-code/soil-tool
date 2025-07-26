@@ -11,3 +11,4 @@ def calculate_percent_finer(total_weight, retained_weights):
         return round(percent_finer, 2)
     except Exception as e:
         return f"Error: {e}"
+

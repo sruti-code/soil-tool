@@ -1,20 +1,32 @@
-{% extends "base.html" %}
-{% block title %}Permeability Test{% endblock %}
-{% block content %}
-<h2>Permeability Test</h2>
-<form method="post">
-  <label>Flow Rate (cm³/s):</label>
-  <input type="number" step="any" name="flow_rate" required class="form-control mb-2">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Permeability Test</title>
+</head>
+<body>
+    <h1>Permeability Test</h1>
+    <form method="POST">
+        <label for="length">Length (cm):</label>
+        <input type="number" step="any" name="length" required><br><br>
 
-  <label>Cross-sectional Area (cm²):</label>
-  <input type="number" step="any" name="area" required class="form-control mb-2">
+        <label for="area">Cross-sectional Area (cm²):</label>
+        <input type="number" step="any" name="area" required><br><br>
 
-  <label>Hydraulic Gradient:</label>
-  <input type="number" step="any" name="gradient" required class="form-control mb-2">
+        <label for="head_loss">Head Loss (cm):</label>
+        <input type="number" step="any" name="head_loss" required><br><br>
 
-  <button type="submit" class="btn btn-primary">Calculate</button>
-</form>
-{% if result %}
-  <div class="alert alert-success mt-3">Permeability: {{ result }} cm/s</div>
-{% endif %}
-{% endblock %}
+        <label for="time">Time (s):</label>
+        <input type="number" step="any" name="time" required><br><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
