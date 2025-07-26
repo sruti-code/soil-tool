@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request
 
-from calculation.specific_gravity import calculate as sg_calculate
-from calculation.plasticity import calculate as pl_calculate
-from calculation.compaction import calculate as cp_calculate
-from calculation.consolidation import calculate as cs_calculate
-from calculation.permeability import calculate as pm_calculate
-from calculation.hydrometer import calculate as hy_calculate
-from calculation.grain_size import calculate as gs_calculate
+from calculation.specific_gravity import calculate_specific_gravity as sg_calculate
+from calculation.plasticity import calculate_plasticity_limits as pl_calculate
+from calculation.compaction import calculate_compaction as cp_calculate
+from calculation.consolidation import calculate_consolidation as cs_calculate
+from calculation.permeability import calculate_permeability as pm_calculate
+from calculation.hydrometer import calculate_particle_diameter as hy_calculate
+from calculation.grain_size import calculate_percent_finer as gs_calculate
 
 app = Flask(__name__)
 
