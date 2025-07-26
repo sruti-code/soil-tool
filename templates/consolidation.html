@@ -1,22 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Consolidation Test{% endblock %}
+{% block header %}Consolidation Coefficient (Cv) Calculator{% endblock %}
 {% block content %}
-<h2>Consolidation Coefficient (Cv) Calculator</h2>
-<form method="POST">
-  <label>Strain (cm):</label>
-  <input type="number" step="any" name="strain" required class="form-control mb-2">
-
-  <label>Initial Time (min):</label>
-  <input type="number" step="any" name="time_initial" required class="form-control mb-2">
-
-  <label>Final Time (min):</label>
-  <input type="number" step="any" name="time_final" required class="form-control mb-2">
-
-  <button type="submit" class="btn btn-primary">Calculate Cv</button>
-</form>
-
-{% if result is not none %}
-  <div class="alert alert-info mt-3">Calculated Cv: {{ result }} cm/min</div>
-{% endif %}
+<div class="card shadow p-4" style="max-width: 500px; margin:auto;">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Strain (cm):</label>
+      <input type="number" step="any" name="strain" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Initial Time (min):</label>
+      <input type="number" step="any" name="time_initial" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Final Time (min):</label>
+      <input type="number" step="any" name="time_final" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Calculate Cv</button>
+  </form>
+  {% if result is not none %}
+    <div class="alert alert-info mt-3">Calculated Cv: {{ result }} cm/min</div>
+  {% endif %}
+</div>
 {% endblock %}
 

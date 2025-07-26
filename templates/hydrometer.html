@@ -1,29 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hydrometer Analysis - Particle Diameter</title>
-</head>
-<body>
-    <h1>Hydrometer Analysis</h1>
-    <form method="POST">
-        <label>Viscosity (poise):</label><br>
-        <input type="number" step="any" name="viscosity" required><br><br>
-
-        <label>Specific Gravity of Soil:</label><br>
-        <input type="number" step="any" name="specific_gravity" required><br><br>
-
-        <label>Time (seconds):</label><br>
-        <input type="number" step="any" name="time" required><br><br>
-
-        <label>Depth (cm):</label><br>
-        <input type="number" step="any" name="depth" required><br><br>
-
-        <input type="submit" value="Calculate">
-    </form>
-
-    {% if result is not none %}
-        <h2>Result: {{ result }}</h2>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Hydrometer Analysis{% endblock %}
+{% block header %}Hydrometer Analysis{% endblock %}
+{% block content %}
+<div class="card shadow p-4" style="max-width: 500px; margin:auto;">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Viscosity (poise):</label>
+      <input type="number" step="any" name="viscosity" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Specific Gravity of Soil:</label>
+      <input type="number" step="any" name="specific_gravity" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Time (seconds):</label>
+      <input type="number" step="any" name="time" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Depth (cm):</label>
+      <input type="number" step="any" name="depth" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+  </form>
+  {% if result is not none %}
+    <div class="alert alert-info mt-3">Result: {{ result }}</div>
+  {% endif %}
+</div>
+{% endblock %}
 

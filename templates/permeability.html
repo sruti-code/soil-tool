@@ -1,32 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Permeability Test</title>
-</head>
-<body>
-    <h1>Permeability Test</h1>
-    <form method="POST">
-        <label for="length">Length (cm):</label>
-        <input type="number" step="any" name="length" required><br><br>
-
-        <label for="area">Cross-sectional Area (cm²):</label>
-        <input type="number" step="any" name="area" required><br><br>
-
-        <label for="head_loss">Head Loss (cm):</label>
-        <input type="number" step="any" name="head_loss" required><br><br>
-
-        <label for="time">Time (s):</label>
-        <input type="number" step="any" name="time" required><br><br>
-
-        <button type="submit">Calculate</button>
-    </form>
-
-    {% if result is not none %}
-        <h2>Result:</h2>
-        <p>{{ result }}</p>
-    {% endif %}
-
-    <a href="/">Back to Home</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Permeability Test{% endblock %}
+{% block header %}Permeability Test{% endblock %}
+{% block content %}
+<div class="card shadow p-4" style="max-width: 600px; margin:auto;">
+  <form method="POST">
+    <div class="mb-3">
+      <label for="method" class="form-label">Select Method:</label>
+      <select name="method" id="method" class="form-select" onchange="toggleFields()" required>
+        <option value="constant">Constant Head</option>
+        <option value="falling">Falling Head</option>
+      </select>
+    </div>
+    <div id="constant-fields">
+      <div class="mb-3">
+        <label class="form-label">Length (cm):</label>
+        <input type="number" step="any" name="length" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Cross-sectional Area (cm²):</label>
+        <input type="number" step="any" name="area" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Head Loss (cm):</label>
+        <input type="number" step="any" name="head_loss" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Time (s):</label>
+        <input type="number" step="any" name="time" class="form-control">
+      </div>
+    </div>
+    <div id="falling-fields" style="display:none;">
+      <div class="mb-3">
+        <label class="form-label">Standpipe Area (cm²):</label>
+        <input type="number" step="any" name="a" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Soil Sample Area (cm²):</label>
+        <input type="number" step="any" name="A" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Length of Soil Sample (cm):</label>
+        <input type="number" step="any" name="L" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Elapsed Time (s):</label>
+        <input type="number" step="any" name="t" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Initial Head (cm):</label>
+        <input type="number" step="any" name="h1" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Final Head (cm):</label>
+        <input type="number" step="any" name="h2" class="form-control">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+  </form>
+  {% if result is not none %}
+    <div class="alert alert-info mt-3">Result: {{ result }}</div>
+  {% endif %}
+</div>
+<script>
+  function toggleFields() {
+    var method = document.getElementById('method').value;
+    document.getElementById('constant-fields').style.display = method === 'constant' ? 'block' : 'none';
+    document.getElementById('falling-fields').style.display = method === 'falling' ? 'block' : 'none';
+  }
+  window.onload = toggleFields;
+</script>
+{% endblock %}

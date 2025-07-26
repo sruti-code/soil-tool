@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Grain Size Analysis{% endblock %}
+{% block header %}Grain Size Analysis{% endblock %}
 {% block content %}
-<h2>Grain Size Analysis</h2>
-<form method="POST">
-  <label>Total sample weight (g):</label>
-  <input type="number" step="any" name="total_weight" class="form-control" required>
-
-  <label>Retained weights on sieves (comma-separated, in grams):</label>
-  <input type="text" name="retained_weights" class="form-control" required>
-
-  <button type="submit" class="btn btn-primary mt-2">Calculate</button>
-</form>
-
-{% if result %}
-  <div class="alert alert-info mt-3">Percent Finer: {{ result }}%</div>
-{% endif %}
+<div class="card shadow p-4" style="max-width: 500px; margin:auto;">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Total sample weight (g):</label>
+      <input type="number" step="any" name="total_weight" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Retained weights on sieves (comma-separated, in grams):</label>
+      <input type="text" name="retained_weights" class="form-control" required placeholder="e.g. 10, 20, 15, 5">
+    </div>
+    <button type="submit" class="btn btn-primary w-100 mt-2">Calculate</button>
+  </form>
+  {% if result %}
+    <div class="alert alert-info mt-3">Percent Finer: {{ result }}%</div>
+  {% endif %}
+</div>
 {% endblock %}
-

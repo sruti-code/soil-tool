@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Specific Gravity Test{% endblock %}
+{% block header %}Specific Gravity Test{% endblock %}
 {% block content %}
-<h2>Specific Gravity Test</h2>
-<form method="POST">
-  <label>Weight of dry soil (g):</label>
-  <input type="number" step="any" name="weight_dry" class="form-control" required>
-
-  <label>Weight of submerged soil (g):</label>
-  <input type="number" step="any" name="weight_submerged" class="form-control" required>
-
-  <label>Weight of container (g):</label>
-  <input type="number" step="any" name="weight_container" class="form-control" required>
-
-  <button type="submit" class="btn btn-primary mt-2">Calculate</button>
-</form>
-
-{% if result %}
-  <div class="alert alert-info mt-3">Specific Gravity: {{ result }}</div>
-{% endif %}
+<div class="card shadow p-4" style="max-width: 500px; margin:auto;">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Weight of dry soil (g):</label>
+      <input type="number" step="any" name="weight_dry" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Weight of submerged soil (g):</label>
+      <input type="number" step="any" name="weight_submerged" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Weight of container (g):</label>
+      <input type="number" step="any" name="weight_container" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+  </form>
+  {% if result %}
+    <div class="alert alert-info mt-3">Specific Gravity: {{ result }}</div>
+  {% endif %}
+</div>
 {% endblock %}

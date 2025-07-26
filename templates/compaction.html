@@ -1,32 +1,36 @@
 {% extends "base.html" %}
 {% block title %}Compaction Test{% endblock %}
-
+{% block header %}Compaction Test{% endblock %}
 {% block content %}
-<h2>Compaction Test</h2>
-<form method="post">
-  <label>Weight of Mold with Wet Soil (kg):</label>
-  <input type="number" step="any" name="weight_mold_wet" required class="form-control mb-2">
-
-  <label>Weight of Empty Mold (kg):</label>
-  <input type="number" step="any" name="weight_mold" required class="form-control mb-2">
-
-  <label>Volume of Mold (cm³):</label>
-  <input type="number" step="any" name="volume_mold" required class="form-control mb-2">
-
-  <label>Moisture Content (%):</label>
-  <input type="number" step="any" name="moisture_content" required class="form-control mb-2">
-
-  <button type="submit" class="btn btn-primary">Calculate</button>
-</form>
-
-{% if result %}
-  {% if result is string %}
-    <div class="alert alert-danger mt-3">{{ result }}</div>
-  {% else %}
-    <div class="alert alert-success mt-3">
-      <p><strong>Wet Density:</strong> {{ result.wet_density }} g/cm³</p>
-      <p><strong>Dry Density:</strong> {{ result.dry_density }} g/cm³</p>
+<div class="card shadow p-4" style="max-width: 500px; margin:auto;">
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Weight of Mold with Wet Soil (kg):</label>
+      <input type="number" step="any" name="weight_mold_wet" required class="form-control">
     </div>
+    <div class="mb-3">
+      <label class="form-label">Weight of Empty Mold (kg):</label>
+      <input type="number" step="any" name="weight_mold" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Volume of Mold (cm³):</label>
+      <input type="number" step="any" name="volume_mold" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Moisture Content (%):</label>
+      <input type="number" step="any" name="moisture_content" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+  </form>
+  {% if result %}
+    {% if result is string %}
+      <div class="alert alert-danger mt-3">{{ result }}</div>
+    {% else %}
+      <div class="alert alert-success mt-3">
+        <p><strong>Wet Density:</strong> {{ result.wet_density }} g/cm³</p>
+        <p><strong>Dry Density:</strong> {{ result.dry_density }} g/cm³</p>
+      </div>
+    {% endif %}
   {% endif %}
-{% endif %}
+</div>
 {% endblock %}
