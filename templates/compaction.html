@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Compaction Test{% endblock %}
+{% block content %}
+<h2>Compaction Test</h2>
+<form method="post">
+  <label>Wet Density (g/cc):</label>
+  <input type="number" step="any" name="wet_density" required class="form-control mb-2">
+
+  <label>Water Content (%):</label>
+  <input type="number" step="any" name="water_content" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if result %}
+  <div class="alert alert-success mt-3">Dry Density: {{ result }} g/cc</div>
+{% endif %}
+{% endblock %}

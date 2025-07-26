@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Permeability Test{% endblock %}
+{% block content %}
+<h2>Permeability Test</h2>
+<form method="post">
+  <label>Flow Rate (cm³/s):</label>
+  <input type="number" step="any" name="flow_rate" required class="form-control mb-2">
+
+  <label>Cross-sectional Area (cm²):</label>
+  <input type="number" step="any" name="area" required class="form-control mb-2">
+
+  <label>Hydraulic Gradient:</label>
+  <input type="number" step="any" name="gradient" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if result %}
+  <div class="alert alert-success mt-3">Permeability: {{ result }} cm/s</div>
+{% endif %}
+{% endblock %}

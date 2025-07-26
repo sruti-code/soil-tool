@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Plasticity Test{% endblock %}
+{% block content %}
+<h2>Plasticity Test</h2>
+<form method="post">
+  <label>Liquid Limit (%):</label>
+  <input type="number" step="any" name="liquid_limit" required class="form-control mb-2">
+
+  <label>Plastic Limit (%):</label>
+  <input type="number" step="any" name="plastic_limit" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if result %}
+  <div class="alert alert-success mt-3">Plasticity Index: {{ result }}%</div>
+{% endif %}
+{% endblock %}

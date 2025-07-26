@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Soil Testing Tool{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { display: flex; min-height: 100vh; }
+    .sidebar {
+      min-width: 200px;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .nav-link.active {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h5>Soil Tests</h5>
+    <ul class="nav flex-column">
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('plasticity') }}">Plasticity</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('compaction') }}">Compaction</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('consolidation') }}">Consolidation</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('hydrometer') }}">Hydrometer</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('grain_size') }}">Grain Size</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('permeability') }}">Permeability</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('specific_gravity') }}">Specific Gravity</a></li> <!-- 🔹 Add this line -->
+</ul>
+
+  </div>
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

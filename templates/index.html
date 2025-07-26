@@ -1,19 +1,19 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Specific Gravity Calculator</title>
+    <title>Soil Testing Tool</title>
 </head>
 <body>
-    <h1>Specific Gravity Calculator</h1>
-    <form method="POST">
-        Water Weight (g): <input type="number" name="water" step="0.01" required><br><br>
-        Dry Soil Weight (g): <input type="number" name="dry" step="0.01" required><br><br>
-        <input type="submit" value="Calculate">
-    </form>
-
-    {% if result is not none %}
-        <h2>Result: {{ result }}</h2>
-    {% endif %}
+    <h1>Welcome to the Soil Testing Tool</h1>
+    <p>Select a test:</p>
+    <ul>
+        <li><a href="{{ url_for('specific_gravity') }}">Specific Gravity Test</a></li>
+        <li><a href="{{ url_for('plasticity') }}">Atterberg Limits (Plasticity) Test</a></li>
+        <li><a href="{{ url_for('hydrometer') }}">Hydrometer Test</a></li>
+        <li><a href="{{ url_for('compaction') }}">Compaction Test</a></li>
+        <li><a href="{{ url_for('grain_size') }}">Grain Size Analysis</a></li>
+        <li><a href="{{ url_for('permeability') }}">Permeability Test</a></li>
+        <li><a href="{{ url_for('consolidation') }}">Consolidation Test</a></li>
+    </ul>
 </body>
 </html>

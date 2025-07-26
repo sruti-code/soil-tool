@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Grain Size Analysis{% endblock %}
+{% block content %}
+<h2>Grain Size Analysis</h2>
+<form method="post">
+  <label>Mass Retained (g):</label>
+  <input type="number" step="any" name="mass_retained" required class="form-control mb-2">
+
+  <label>Total Mass (g):</label>
+  <input type="number" step="any" name="total_mass" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if result %}
+  <div class="alert alert-success mt-3">% Finer: {{ result }}%</div>
+{% endif %}
+{% endblock %}

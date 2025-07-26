@@ -1,16 +1,13 @@
 # for calculating the specific gravity of soil.
 
-def calculate(water_weight, dry_weight):
-    
+def calculate_specific_gravity(weight_dry, weight_submerged, weight_container):
     try:
-        sg = dry_weight / (dry_weight - water_weight)
-    except ZeroDivisionError:
-        return " Invalid input: dry weight and water weight are too close."
-    return round(sg, 3)
-
-# allows to run the code directly from terminal
-if __name__ == "__main__":
-    water_weight = float(input("Enter water weight (g): "))
-    dry_weight = float(input("Enter dry soil weight (g): "))
-    result = calculate(water_weight, dry_weight)
-    print("✅ Specific Gravity =", result)
+        if weight_dry <= 0 or weight_submerged <= 0 or weight_container < 0:
+            return "All weights must be positive, and container weight should be non-negative."
+        denominator = weight_dry - weight_submerged - weight_container
+        if denominator <= 0:
+            return "Invalid: denominator for specific gravity is zero or negative."
+        specific_gravity = weight_dry / denominator
+        return round(specific_gravity, 3)
+    except Exception as e:
+        return f"Error: {e}"

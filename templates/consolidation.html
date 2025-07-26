@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Consolidation Test{% endblock %}
+{% block content %}
+<h2>Consolidation Test</h2>
+<form method="post">
+  <label>Initial Height (mm):</label>
+  <input type="number" step="any" name="initial_height" required class="form-control mb-2">
+
+  <label>Final Height (mm):</label>
+  <input type="number" step="any" name="final_height" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if result %}
+  <div class="alert alert-success mt-3">Compression Ratio: {{ result }}</div>
+{% endif %}
+{% endblock %}
+

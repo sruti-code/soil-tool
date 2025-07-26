@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Hydrometer Test{% endblock %}
+{% block content %}
+<h2>Hydrometer Test</h2>
+<form method="post">
+  <label>Hydrometer Reading:</label>
+  <input type="number" step="any" name="reading" required class="form-control mb-2">
+
+  <label>Temperature (&deg;C):</label>
+  <input type="number" step="any" name="temperature" required class="form-control mb-2">
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if result %}
+  <div class="alert alert-success mt-3">Corrected Reading: {{ result }}</div>
+{% endif %}
+{% endblock %}
